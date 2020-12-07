@@ -1,0 +1,37 @@
+.flex-container {
+    width: 95%; 
+    margin: auto;
+	display: flex;
+	align-items: stretch;
+	flex-wrap: wrap;
+}
+
+.product {
+    width: 200px;
+	margin: 10px;
+	text-align: center;
+	padding: 2% 0 0 0;
+	border: 2px solid black;
+}
+
+.product-img>img {
+	width: 100px;
+	height: 100px;
+ }
+
+ .product-info {
+	padding-bottom: 1px;
+	font-size: 12px; 
+	
+}
+
+.product-info>h3 {
+	font-size: 11px;
+	
+}
+
+.product-addcart {
+	border: 1px solid black;
+	width: 90%;
+	margin: 5px auto;
+}

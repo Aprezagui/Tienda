@@ -1,0 +1,28 @@
+header{
+	background-color: #abacab;
+	margin: 0px 0px; 
+	padding: 20px;
+	text-align: center;
+}
+
+body {
+	font-family: Arial;
+	margin:auto;
+}
+
+footer{
+	text-align: center;
+	background-color: #CCCCCC;	
+	padding: 10px 0px;
+	
+}
+
+
+/* #last{
+	border-bottom: none;
+} */
+/* aside{
+	grid-column: col1-start ;
+    grid-row: row1-start / row2-end;
+    font-size: 80%;
+} */
