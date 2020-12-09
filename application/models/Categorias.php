@@ -20,7 +20,6 @@ class Categorias extends CI_Model {
 
     public function read(){
         $query = $this->db->get_where('Categorias',array("categoria_activo" => "1"));
-        $query = $this->db->get('Categorias');
         if ($query->num_rows() > 0){
             return $query->result_array();
         }

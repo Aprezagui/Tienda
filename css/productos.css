@@ -1,28 +1,33 @@
 .flex-container {
-    width: 95%; 
+    /*width: 99%;*/ 
     margin: auto;
 	display: flex;
 	align-items: stretch;
 	flex-wrap: wrap;
+	justify-content: center;
+	
 }
 
 .product {
     width: 200px;
 	margin: 10px;
 	text-align: center;
-	padding: 2% 0 0 0;
+	padding: 0;
 	border: 2px solid black;
 }
 
 .product-img>img {
+	margin-top: 3px;
 	width: 100px;
-	height: 100px;
+	height: 100px; 
+	
  }
 
  .product-info {
-	padding-bottom: 1px;
+	height: 50%;
+	padding-bottom: 5px;
 	font-size: 12px; 
-	
+	/* margin-bottom: 0px; */
 }
 
 .product-info>h3 {
@@ -33,5 +38,5 @@
 .product-addcart {
 	border: 1px solid black;
 	width: 90%;
-	margin: 5px auto;
+	margin: 5px auto 1px;
 }

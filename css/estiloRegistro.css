@@ -1,0 +1,45 @@
+.registro{
+    font-family: Lucida Sans Unicode;
+    width: 450px;
+    height: 400px;
+    background-color: #abacab;
+    border: 1px solid #dcdcdc;
+    border-radius: 15px;
+    font-size: 1em;
+    padding-top: 10px;
+    margin: 20px auto;
+}
+
+.registro label{
+    width: 150px;
+    font-size: .8em;
+    text-align: right;
+    margin: 0 5px 0 45px;
+    display: inline-block;
+}
+.registro input{
+    width: 150px;
+    border: 1px solid #dcdcdc;
+}
+
+.registro>button{
+    width: 150px;
+    margin: 0 125px 0 125px;
+    text-align: center;
+}
+
+.titulo{
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.campo{
+    margin: 2px 0 10px 0;
+}
+
+.mensaje{
+    font-size: .6em;
+    margin-left: 205px; 
+}
+

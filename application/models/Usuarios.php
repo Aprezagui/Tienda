@@ -11,11 +11,11 @@ class Usuarios extends CI_Model {
     public $usuario_usergroup;
 
 
-    public function login($usuario_email, $password){   
-        if($this->existe($usuario_email)){
-            $this->read($usuario_email);
-            if($this->activo == true){
-                if (password_verify ( $password , $this->password )){
+    public function login($usuario_email, $usuario_password){   
+        if($this->read($usuario_email)){
+            if(isset($this->usuario_activo) && isset($this->usuario_password))
+            if($this->usuario_activo == 1){
+                if (password_verify( $usuario_password , $this->usuario_password )){
                     return true;
                 }
             }
@@ -24,8 +24,7 @@ class Usuarios extends CI_Model {
     }
 
     public function existe($usuario_email){
-        $this->db->where('usuario_email',$usuario_email);
-        $query=$this->db->get('Usuarios');
+        $query = $this->db->get_where('Usuarios',array("usuario_email" => $usuario_email));
         if($query->num_rows() > 0){
             return true;
         }else{
@@ -35,40 +34,43 @@ class Usuarios extends CI_Model {
 
     public function create(){
         if(!$this->existe($this->usuario_email)){
-            if($this->usuario_nombre != ""){
+            if($this->usuario_nombre == "")                
                 return false;
-            }
-            if($this->usuario_apellidos != ""){
+            if($this->usuario_apellidos == "")
                 return false;
-            }
-            
-            if($this->usuario_password !=""){
+                        
+            if($this->usuario_password ==""){
                 return false;
             }else{
-                $usuario_password = password_hash($this->usuario_password, PASSWORD_DEFAULT);
+                $this->usuario_password = password_hash($this->usuario_password, PASSWORD_DEFAULT);
             }
-            if($this->usuario_email !=""){
+            if($this->usuario_email =="")
                 return false;
-            }
-            $usuario_activo = true;
-            $usuario_usergroup = 0;
         
-            if($this->db->insert('Usuario',$this)){
+            $this->usuario_activo = true;
+            $this->usuario_usergroup = 1;
+   
+            $data  =  array ( 
+                'usuario_nombre'  =>  $this->usuario_nombre , 
+                'usuario_apellidos'  =>  $this->usuario_apellidos , 
+                'usuario_password'  =>  $this->usuario_password,
+                'usuario_email'  => $this->usuario_email, 
+                'usuario_activo'    => $this->usuario_activo,
+                'usuario_usergroup' => $this->usuario_usergroup
+            ); 
+
+            if($this->db->insert('Usuarios',$data))
                 return true;
-            }
         } 
             return false;
     }
 
-    public function insert(){
-        $this->db->insert('Usuario',$this);
-    }
 
     public function read($usuario_email){
-        $this->db->where('usuario_email',$usuario_email);
-        $query=$this->db->get('Usuarios');
+        $query = $this->db->get_where('Usuarios',array("usuario_activo" => "1", 'usuario_email' =>$usuario_email));
+
         $row = $query->row();
-        if ($query->num_rows() == 1){
+        if ($query->num_rows() == 1){ 
            $this->usuario_nombre = $row->usuario_nombre;
            $this->usuario_apellidos = $row->usuario_apellidos;
            $this->usuario_password = $row->usuario_password;
@@ -76,7 +78,9 @@ class Usuarios extends CI_Model {
            $this->usuario_email = $row->usuario_email;
            $this->usuario_activo = $row->usuario_activo;
            $this->usuario_usergroup = $row->usuario_usergroup;
+           return true;
         }
+        return false;
     }
 
     public function rol(){

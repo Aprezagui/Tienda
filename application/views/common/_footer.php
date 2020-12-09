@@ -1,11 +1,10 @@
-<?php
-    echo <<< RAW
-        <footer id="footer">
+    <footer id="footer">
         <span>Copyright &copy; Your Website 2020</span>
-        </footer>
-        
-    </body>
-    </html>
+    </footer>
 
-    RAW;
-?> 
+    <!-- Custom scripts registro-->
+    <script type="text/javascript" src="<?php echo base_url();?>js/registro.js"></script>    
+    
+    </body>
+</html>
+  
