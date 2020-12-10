@@ -1,7 +1,7 @@
 .registro{
     font-family: Lucida Sans Unicode;
     width: 450px;
-    height: 400px;
+    /* height: 400px; */
     background-color: #abacab;
     border: 1px solid #dcdcdc;
     border-radius: 15px;
@@ -24,7 +24,7 @@
 
 .registro>button{
     width: 150px;
-    margin: 0 125px 0 125px;
+    margin: 0 125px 10px; 125px;
     text-align: center;
 }
 
@@ -41,5 +41,9 @@
 .mensaje{
     font-size: .6em;
     margin-left: 205px; 
+}
+.campo>textarea{
+    margin: auto;
+    display: block;
 }
 

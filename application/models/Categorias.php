@@ -5,6 +5,7 @@ class Categorias extends CI_Model {
     public $categoria_id;
     public $categoria_nombre;
     public $categoria_activo;
+    public $categoria_idpadre;
 
 
     public function existe($categoria_nombre){
@@ -19,7 +20,34 @@ class Categorias extends CI_Model {
     }
 
     public function read(){
-        $query = $this->db->get_where('Categorias',array("categoria_activo" => "1"));
+        $query = $this->db->get_where('Categorias',array("categoria_activo" => "1","categoria_idpadre" => "0"));
+        if ($query->num_rows() > 0){
+            return $query->result_array();
+        }
+        return null;
+    }
+
+    public function calcular_descendencia($categoria_id){
+        $query = $this->db->get_where('Categorias',array("categoria_idpadre" => $categoria_id ,"categoria_activo" => "1"));
+        if ($query->num_rows() > 0){
+            $resul = $query->result_array();
+            $array_resul = array();
+            foreach($resul as $categoria){
+                if(isset($categoria['categoria_idpadre'])){
+                    $resul_temp = $this->calcular_descendencia($categoria['categoria_id']);
+                    if(isset($resul_temp) && $resul_temp != null ){
+                        array_merge($array_resul,$resul_temp);
+                    }
+                    array_push($array_resul,$categoria); 
+                }
+            }
+            return $array_resul;
+        }
+        return null;          
+    }
+
+    public function read_Subcategoria($categoria_id){
+        $query = $this->db->get_where('Categorias',array("categoria_activo" => "1","categoria_idpadre" => $categoria_id));
         if ($query->num_rows() > 0){
             return $query->result_array();
         }
@@ -40,11 +68,11 @@ class Categorias extends CI_Model {
     }
 
     public function update(){
-        $this->db->update('Categoria', $this, array('Categoria' => $this->$categoria_nombre));
+        $this->db->update('Categoria', $this, array('Categoria' => $this->categoria_nombre));
     }
 
     public function delete() {
-        $this->db->delete('Categoria', array('Categoria' => $this-$categoria_nombre));
+        $this->db->delete('Categoria', array('Categoria' => $this-categoria_nombre));
     }
 
 }

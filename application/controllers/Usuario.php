@@ -25,35 +25,9 @@ class Usuario extends CI_Controller {
         }
     }
 
-    public function login()	{
-        $this->session();
+    // public function login(){} 
 
-        //Carga las vistas principales y login
-		$datos_navlist = array();
-		$this->load->model('Categorias');
-		$mod_categorias = new Categorias();
-		$datos_navlist['Categorias'] = $mod_categorias->read();
-    	$this->load->view('common/_head');
-		$this->load->view('common/_navlist',$datos_navlist);
-		$this->load->view('login');
-		$this->load->view('common/_footer');
-
-    } 
-
-    public function inscripcion(){
-        $this->session();
-
-        //Carga las vistas principales
-		$datos_navlist = array();
-		$this->load->model('Categorias');
-		$mod_categorias = new Categorias();
-		$datos_navlist['Categorias'] = $mod_categorias->read();
-    	$this->load->view('common/_head');
-        $this->load->view('common/_navlist',$datos_navlist);
-        //Cargo vista Inscripcion
-		$this->load->view('registro');
-		$this->load->view('common/_footer');
-    }
+    // public function inscripcion(){}
 
     public function chekinscripcion(){
         $this->session();
@@ -82,24 +56,10 @@ class Usuario extends CI_Controller {
             }
     }
     
-    public function perfil(){
-        $this->session();
-
-        if (isset($_SESSION["rol"])) {
-            echo "sesion iniciada";
-        }else{
-            $this->login();
-        }
+    // public function perfil(){
     }
 
-    public function pedidos(){
-        $this->session();
-
-        if (isset($_SESSION["rol"])) {
-            echo "sesion iniciada";
-        }else{
-            $this->login();
-        }
+    // public function pedidos(){
     }
 
     public function logout(){

@@ -1,5 +1,8 @@
+<h1>Ofertas</h1>
+<hr/>
 <section class="flex-container">
 <?php
+if(isset($Productos))
 for ($i=0; $i<count($Productos); $i++) {
   echo '<div class="product">';
   echo '  <div class="product-img">';

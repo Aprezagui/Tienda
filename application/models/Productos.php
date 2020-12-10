@@ -10,6 +10,7 @@ class Productos extends CI_Model {
     public $producto_descuento;
     public $producto_activo;
     public $producto_img;
+    public $producto_categoria;
 
     public function existe($producto_id){
         $this->db->where('producto_id',$producto_id);
@@ -38,8 +39,20 @@ class Productos extends CI_Model {
             $this->producto_descuento = $row->producto_descuento;
             $this->producto_activo = $row->producto_activo;
             $this->producto_img = $row->producto_img;
+            $this->producto_categoria = $row->producto_categoria;
         }
     }
+
+    public function read_Categoria($producto_categoria){
+        if(isset($producto_categoria)){
+            $query = $this->db->get_where('Productos',array("producto_activo" => "1","producto_categoria" =>$producto_categoria));
+            if ($query->num_rows() > 0){
+                return $query->result_array();
+            }
+        }
+        return null;
+    }
+
 
     public function read_all(){
         $query = $this->db->get_where('Productos',array("producto_activo" => "1"));

@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'raspberrypi',
+	'hostname' => 'localhost',
 	'username' => 'web',
 	'password' => 'web',
 	'database' => 'tienda',

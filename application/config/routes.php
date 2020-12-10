@@ -50,8 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
+$route['uri-(:any)'] = "home/parametro/$1";
+$route['uri-(:any)'] = "home/index/$1"; 
 $router['logout'] = 'usuario/logout';
-$router['login'] = 'usuario/login';
+$router['login'] = 'vista/login';
 $router['cheklogin'] = 'usuario/cheklogin';
 $router['inscripcion'] = 'usuario/inscripcion';
 $router['perfil'] = 'usuario/perfil';
