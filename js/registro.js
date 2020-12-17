@@ -19,7 +19,10 @@ function validar_clave(){
             if(pass1.charCodeAt(i) == 32){
                 espacios=true;
                 document.getElementById("mensaje2").innerHTML="La contraseña no puede tener espacio";
+                document.getElementById("mensaje2").hidden=false;
                 break;
+            }else{
+                document.getElementById("mensaje2").hidden=true;
             }
             
             //Tamaño minimo
@@ -34,14 +37,14 @@ function validar_clave(){
                 else if(pass1.charCodeAt(i) >= 48 && pass1.charCodeAt(i) <= 57){
                     numero = true;
                 }
-                else{
-                    caracter_raro = true;
-                }
+                //else{
+                  //  caracter_raro = true;
+                //}
             }	
         }
      
     
-        if(mayuscula == true && minuscula == true && caracter_raro == true && numero == true && espacios == false){
+        if(mayuscula == true && minuscula == true && /*caracter_raro == true &&*/ numero == true && espacios == false){
             document.getElementById("valid_pass1_img").hidden=false;
             document.getElementById("invalid_pass1_img").hidden=true;
             return true;
@@ -81,9 +84,7 @@ function validar_segunda_clave(){
     return false;
 } 
 
-function validar_username(){
-    //document.getElementById("autov_username_img").hidden=false;
-    //document.getElementById("autov_username_img").src="img/field_valid.gif";
-    //document.getElementById("autov_username_img").title="Usuario valido";
-    return true; 
+function cambiarPassword(){
+    document.getElementById('mPassword').hidden=true;
+    document.getElementById('campoPassword').hidden=false;
 }

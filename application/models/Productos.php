@@ -53,6 +53,14 @@ class Productos extends CI_Model {
         return null;
     }
 
+    public function read_ofertas(){
+        $this->db->having('producto_descuento != 0');
+        $query = $this->db->get_where('Productos',array("producto_activo" => "1"));
+            if ($query->num_rows() > 0){
+                return $query->result_array();
+            }
+        return null;
+    }
 
     public function read_all(){
         $query = $this->db->get_where('Productos',array("producto_activo" => "1"));

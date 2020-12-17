@@ -50,13 +50,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
-$route['uri-(:any)'] = "home/parametro/$1";
-$route['uri-(:any)'] = "home/index/$1"; 
-$router['logout'] = 'usuario/logout';
-$router['login'] = 'vista/login';
-$router['cheklogin'] = 'usuario/cheklogin';
-$router['inscripcion'] = 'usuario/inscripcion';
-$router['perfil'] = 'usuario/perfil';
-$router['ruta'] = 'usuario/prueba';
+
+$route['login'] = 'usuario/index/login';
+$route['registro'] = 'usuario/index/registro';
+$route['miperfil'] = 'usuario/index/perfil';
+$route['direccion'] = 'usuario/index/direccion';
+//$route['update'] = 'usuario/update';
+$route['update'] = 'usuario/usuarioUpdate'; //Actualizar los datos del usuario
+$route['logout'] = 'usuario/logout';
+$route['delete_direccion/(:num)'] = 'usuario/delete_direccion/$1';
+
+$route['cheklogin'] = 'usuario/cheklogin';
+$route['inscripcion'] = 'usuario/inscripcion';
+$route['perfil'] = 'usuario/perfil';
+
 $route['404_override'] = 'index.php/error';
 $route['translate_uri_dashes'] = FALSE;

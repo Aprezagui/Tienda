@@ -19,6 +19,16 @@ class Categorias extends CI_Model {
         }
     }
 
+    public function get_nombre($categoria_id){
+        $query = $this->db->get_where('Categorias',array("categoria_activo" => "1","categoria_id" => $categoria_id));
+        $row = $query->row();
+        if(isset($row)){
+            return $row->categoria_nombre;
+        }
+        return null;
+    
+    }
+
     public function read(){
         $query = $this->db->get_where('Categorias',array("categoria_activo" => "1","categoria_idpadre" => "0"));
         if ($query->num_rows() > 0){
@@ -36,9 +46,9 @@ class Categorias extends CI_Model {
                 if(isset($categoria['categoria_idpadre'])){
                     $resul_temp = $this->calcular_descendencia($categoria['categoria_id']);
                     if(isset($resul_temp) && $resul_temp != null ){
-                        array_merge($array_resul,$resul_temp);
+                        $array_resul = array_merge($array_resul,$resul_temp);  
                     }
-                    array_push($array_resul,$categoria); 
+                    array_push($array_resul,$categoria);
                 }
             }
             return $array_resul;

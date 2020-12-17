@@ -39,8 +39,6 @@ li:hover:not(.active) {
 }
 
 .dropdown-content {
-    
-    /* float: left; */
     display: none;
     position: absolute;
     right: 0; 

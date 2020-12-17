@@ -12,6 +12,7 @@ class MisVistas {
 
    	/*Gestiona las diferentes views que debe mostrar*/
 	public function vista($param1 = null,$param2 = null){
+		$this->session();
 		//Cargo las vistas comunes
 		$this->CI->load->view('common/_head');
 		$this->CI->load->view('common/_navlist',$this->cargarmenu());
@@ -36,11 +37,18 @@ class MisVistas {
 					break;
 				case "perfil":
 					if (isset($_SESSION["rol"])) {
-						$this->CI->load->view('productos',$this->cargarproductos()); //Falta por hacer
+						$this->CI->load->view('perfil',$this->cargarusuario());
 					}else{
 						$this->CI->load->view('login');
 					}
 					break;
+				case "direccion":
+					if (isset($_SESSION["rol"])) {
+						$this->CI->load->view('direccion');
+					}else{
+						$this->CI->load->view('login');
+					}
+						break;
 				case "pedidos":
 					if (isset($_SESSION["rol"])) {
 						$this->CI->load->view('productos',$this->cargarproductos()); //Falta por hacer
@@ -101,10 +109,11 @@ class MisVistas {
 			$this->CI->load->model('Categorias');
 			$mod_categorias = new Categorias();
 			
+			$datos_productos['Posicion'] = $mod_categorias->get_nombre($param1);
 			/*Busco si tengo algun producto en la categoria seleccionada*/
 			$productos_categoria = $mod_productos->read_Categoria($param1);
 			if(isset($productos_categoria))
-				$datosProductosTemp +=$productos_categoria;
+				$datosProductosTemp = $productos_categoria;
 	
 			/*Calculo si tiene categorias descendientes y sus productos*/
 			$datos_categorias = $mod_categorias->calcular_descendencia($param1);
@@ -112,15 +121,35 @@ class MisVistas {
 			foreach($datos_categorias as $categoria){
 				$productos_categoria = $mod_productos->read_Categoria($categoria["categoria_id"]);
 			    if(isset($productos_categoria))
-					array_merge($datosProductosTemp, $productos_categoria);
+					$datosProductosTemp = array_merge($datosProductosTemp, $productos_categoria);
 			}
 
 			if(isset($datosProductosTemp))
 			$datos_productos['Productos'] = $datosProductosTemp;
 		}else{
-			$datos_productos['Productos'] = $mod_productos->read_all();
+			$datos_productos['Posicion'] = "Ofertas";
+			$datos_productos['Productos'] = $mod_productos->read_ofertas();
+			//$datos_productos['Productos'] = $mod_productos->read_all();
 		}
 		return $datos_productos; 	
+	}
+
+	/*----Cagos los campos del menu----*/
+	private function cargarusuario(){
+		if (isset($_SESSION["user_email"])){
+			/*Cargo los datos del usuario*/
+			$this->CI->load->model('Usuarios');
+			$usuario = new Usuarios();
+			$datos_perfil['Usuario'] = $usuario->get_usuario($_SESSION["user_email"]);
+		
+			/*Cargo los datos de las direcciones asociadas al usuario*/
+			$this->CI->load->model('Direcciones');
+			$direccion = new Direcciones();
+			$datos_perfil['Direccion'] = $direccion->get_direccion($usuario->get_id($_SESSION["user_email"])); 
+			
+			return $datos_perfil;
+		}
+		return null;
 	}
 }
 

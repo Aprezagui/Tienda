@@ -8,7 +8,7 @@
         </div>
         <div class="campo">
             <label for="email">Email:</label>
-            <input type="text" name="email"/>
+            <input type="text" name="email" id="username"/>
         </div>   
         <div class="campo">
             <label for="password">Contraseña:</label>

@@ -1,7 +1,9 @@
-<h1>Ofertas</h1>
-<hr/>
-<section class="flex-container">
+<h1><?php sprintf($Posicion); ?> </h1> 
+
+
 <?php
+  echo '<h1>  ' .$Posicion . '</h1>'; 
+  echo '<section class="flex-container">';
 if(isset($Productos))
 for ($i=0; $i<count($Productos); $i++) {
   echo '<div class="product">';

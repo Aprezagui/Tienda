@@ -1,13 +1,12 @@
 .registro{
     font-family: Lucida Sans Unicode;
     width: 450px;
-    /* height: 400px; */
     background-color: #abacab;
     border: 1px solid #dcdcdc;
     border-radius: 15px;
     font-size: 1em;
     padding-top: 10px;
-    margin: 20px auto;
+    margin: 20px auto;   
 }
 
 .registro label{
@@ -24,7 +23,7 @@
 
 .registro>button{
     width: 150px;
-    margin: 0 125px 10px; 125px;
+    margin: 0 125px 10px;
     text-align: center;
 }
 
@@ -43,7 +42,33 @@
     margin-left: 205px; 
 }
 .campo>textarea{
-    margin: auto;
-    display: block;
+    margin: 5px 0px 5px 15px;
+}
+
+.dirreccion{
+    text-align: left !important;
+    color: green;
+}
+.dirreccion>a{
+    text-decoration: none;
+    color: green;
+}
+.btnborrar .dirreccion>a{
+    text-decoration: none;
+    color: green;
+    
+}
+
+.mError{
+    color: red;
+    text-align: center;
+}
+
+.mPassword{
+    text-align: right;
+    margin: 0 5px 0 45px;
+    font-size: .8em;
+    color: green;
+    cursor: pointer;
 }
 

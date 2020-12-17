@@ -7,9 +7,9 @@ $this->load->helper('url');
         <meta charset="UTF-8">
         <title>La ferrteria</title>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/navlist.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/productos.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/estiloRegistro.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style_navlist.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style_productos.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style_usuario.css">
 
     </head>
     <header>
